@@ -10,9 +10,6 @@ import MenuList from '../MenuList'
 
 import {
   SidebarContainer,
-  SidebarListContainer,
-  SidebarListItem,
-  LinkParagraph,
   ContactUsContainer,
   CompanyImage,
   ContactUsHeading,

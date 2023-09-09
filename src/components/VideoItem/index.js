@@ -31,7 +31,7 @@ const VideoItem = props => (
         publishedAt,
       } = videoDetails
       const {name, profileImageUrl} = channel
-      console.log(props)
+      console.log(publishedAt)
       return (
         <VideoListItem>
           <Link to={`/videos/${id}`} className="video-link">
@@ -39,9 +39,9 @@ const VideoItem = props => (
             <VideoDetailsContainer>
               <ProfileImage src={profileImageUrl} />
               <VideoDetailsBox>
-                <VideoTitle>{title}</VideoTitle>
-                <ChannelName>{name}</ChannelName>
-                <ViewAndTimeBox>
+                <VideoTitle dark={isDarkTheme}>{title}</VideoTitle>
+                <ChannelName dark={isDarkTheme}>{name}</ChannelName>
+                <ViewAndTimeBox dark={isDarkTheme}>
                   <Views>{viewCount} views</Views>
                   <Time>{formatDistanceToNow(new Date(publishedAt))} ago</Time>
                 </ViewAndTimeBox>

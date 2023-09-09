@@ -102,5 +102,5 @@ export const VideoListContainer = styled.ul`
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 15px;
-  background-color: #f0f0f0;
+  background-color:{props => (props.dark? '#0f0f0f': '#f0f0f0')};
 `

@@ -9,6 +9,8 @@ import Header from '../Header'
 import Sidebar from '../Sidebar'
 import LoadingView from '../LoadingView'
 import VideoItem from '../VideoItem'
+import FailureView from '../FailureView'
+import NoSearchResult from '../NoSearchResult'
 
 import './index.css'
 import {
@@ -26,8 +28,6 @@ import {
   SearchButton,
   VideoListContainer,
 } from './styledComponent'
-import {CompanyImage} from '../Sidebar/styledComponent'
-import {OutlineButton} from '../Header/styledComponent'
 
 const apiStatusList = {
   initial: 'INITIAL',
@@ -51,7 +51,8 @@ class Home extends Component {
   getVideosList = async () => {
     this.setState({apiStatus: apiStatusList.inprogress})
     const jwtToken = Cookies.get('jwt_token')
-    const apiUrl = 'https://apis.ccbp.in/videos/all?search='
+    const {searchInput} = this.state
+    const apiUrl = `https://apis.ccbp.in/videos/all?search=${searchInput}`
     const option = {
       method: 'GET',
       headers: {
@@ -109,9 +110,13 @@ class Home extends Component {
     const {videosList} = this.state
     return (
       <VideoListContainer>
-        {videosList.map(each => (
-          <VideoItem videoDetails={each} key={each.id} />
-        ))}
+        {videosList.length === 0 ? (
+          <NoSearchResult retry={this.onClickSearch} />
+        ) : (
+          videosList.map(each => (
+            <VideoItem videoDetails={each} key={each.id} />
+          ))
+        )}
       </VideoListContainer>
     )
   }
@@ -123,17 +128,42 @@ class Home extends Component {
         return <LoadingView />
       case apiStatusList.success:
         return this.renderVideoSection()
+      case apiStatusList.failure:
+        return <FailureView retry={this.onClickSearch} />
       default:
         return null
     }
+  }
+
+  onChangeSearch = event => {
+    this.setState({searchInput: event.target.value})
+  }
+
+  onEnterSearch = event => {
+    if (event.key === 'Enter') {
+      this.getVideosList()
+    }
+  }
+
+  onClickSearch = () => {
+    this.getVideosList()
   }
 
   renderSearchBox = isDarkTheme => {
     const {searchInput} = this.state
     return (
       <SearchBox dark={isDarkTheme}>
-        <SearchInput dark={isDarkTheme} />
-        <SearchButton dark={isDarkTheme}>
+        <SearchInput
+          dark={isDarkTheme}
+          type="search"
+          onChange={this.onChangeSearch}
+          onKeyDown={this.onEnterSearch}
+        />
+        <SearchButton
+          dark={isDarkTheme}
+          type="button"
+          onClick={this.onClickSearch}
+        >
           <BsSearch size={20} />
         </SearchButton>
       </SearchBox>
