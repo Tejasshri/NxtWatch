@@ -5,10 +5,9 @@ import Context from '../../context/Context'
 
 import './index.css'
 import {
-  VideoListItem,
+  SavedVideoListItem,
   ThumbImage,
   VideoDetailsContainer,
-  ProfileImage,
   VideoDetailsBox,
   VideoTitle,
   ChannelName,
@@ -37,11 +36,10 @@ const VideoItem = props => (
         .slice(1)
         .join(' ')
       return (
-        <VideoListItem>
-          <Link to={`/videos/${id}`} className="video-link">
-            <ThumbImage alt="video thumbnail" src={thumbnailUrl} />
+        <SavedVideoListItem>
+          <Link to={`/videos/${id}`} className="saved-video-link">
+            <ThumbImage src={thumbnailUrl} />
             <VideoDetailsContainer>
-              <ProfileImage alt="channel logo" src={profileImageUrl} />
               <VideoDetailsBox>
                 <VideoTitle dark={isDarkTheme}>{title}</VideoTitle>
                 <ChannelName dark={isDarkTheme}>{name}</ChannelName>
@@ -52,7 +50,7 @@ const VideoItem = props => (
               </VideoDetailsBox>
             </VideoDetailsContainer>
           </Link>
-        </VideoListItem>
+        </SavedVideoListItem>
       )
     }}
   </Context.Consumer>

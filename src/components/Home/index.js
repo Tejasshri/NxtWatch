@@ -87,13 +87,17 @@ class Home extends Component {
   }
 
   renderAdsBanner = () => (
-    <AdsContainer>
+    <AdsContainer data-testid="banner">
       <AdsLogoContainer>
         <AdsLogo
-          alt=""
+          alt="nxt watch logo"
           src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
         />
-        <CloseBannerButton type="button" onClick={this.onRemoveAdd}>
+        <CloseBannerButton
+          type="button"
+          onClick={this.onRemoveAdd}
+          data-testid="close"
+        >
           <MdClose size={30} />
         </CloseBannerButton>
       </AdsLogoContainer>
@@ -163,6 +167,7 @@ class Home extends Component {
           dark={isDarkTheme}
           type="button"
           onClick={this.onClickSearch}
+          data-testid="searchButton"
         >
           <BsSearch size={20} />
         </SearchButton>
@@ -180,7 +185,7 @@ class Home extends Component {
           console.log(apiStatus)
 
           return (
-            <HomeContainer dark={isDarkTheme}>
+            <HomeContainer dark={isDarkTheme} data-testid="home">
               <Header />
               <HomeContent>
                 <Sidebar />

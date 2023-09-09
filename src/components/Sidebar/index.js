@@ -30,25 +30,22 @@ const Sidebar = props => (
     {value => {
       const {isDarkTheme} = value
       const linkClassName = isDarkTheme ? 'dark-sidebar-link' : 'sidebar-link'
-      const {match} = props
-      const {path} = match
-      console.log(path)
 
       return (
         <SidebarContainer dark={isDarkTheme}>
           <MenuList />
-          <ContactUsContainer dark={isDarkTheme}>
+          <ContactUsContainer dark={isDarkTheme} data-testid="banner">
             <ContactUsHeading>Contact us</ContactUsHeading>
             <CompanyImage
-              alt=""
+              alt="facebook logo"
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
             />
             <CompanyImage
-              alt=""
+              alt="twitter logo"
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-twitter-logo-img.png "
             />
             <CompanyImage
-              alt=""
+              alt="linked in logo"
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
             />
             <ContactsDescription>

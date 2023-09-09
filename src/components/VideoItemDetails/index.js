@@ -2,11 +2,13 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import ReactPlayer from 'react-player'
 import {BiSolidLike, BiLike, BiSolidDislike, BiDislike} from 'react-icons/bi'
-import {MdPlaylistAdd} from 'react-icons/md'
+import {MdPlaylistAdd, MdPlaylistAddCheck} from 'react-icons/md'
 import {formatDistanceToNow} from 'date-fns'
 
 import Context from '../../context/Context'
 import Header from '../Header'
+import LoadingView from '../LoadingView'
+import FailureView from '../FailureView'
 
 import './index.css'
 import {
@@ -21,6 +23,12 @@ import {
   ButtonBox,
   VideoButton,
   TimeAndViewBox,
+  ChannelDetails,
+  ProfileImage,
+  ChannelData,
+  ChannelName,
+  ChannelSubscribers,
+  VideoDescription,
 } from './styledComponent'
 import Sidebar from '../Sidebar'
 
@@ -34,7 +42,6 @@ const apiStatusList = {
 class VideoItemDetails extends Component {
   state = {
     apiStatus: apiStatusList.initial,
-    videoDetails: {},
   }
 
   componentDidMount() {
@@ -84,53 +91,155 @@ class VideoItemDetails extends Component {
     }
   }
 
+  renderVideoAndOther = value => {
+    const {
+      isDarkTheme,
+      onToggleLike,
+      onToggleUnlike,
+      onVideoSave,
+      savedVideos,
+      unlikedVideoList,
+      likedVideoList,
+    } = value
+    const {videoDetails} = this.state
+    const {
+      channel,
+      id,
+      description,
+      publishedAt,
+      thumbnailUrl,
+      videoUrl,
+      viewCount,
+      title,
+    } = videoDetails
+
+    const toggleSave = () => onVideoSave(videoDetails)
+    const toggleLike = () => onToggleLike(id)
+    const toggleUnlike = () => onToggleUnlike(id)
+
+    const isVideoLiked = likedVideoList.includes(id)
+    const isVideoUnliked = unlikedVideoList.includes(id)
+    const isVideoSaved = savedVideos.some(each => each.id === id)
+
+    return (
+      <VideoItemSection>
+        <VideoContainer>
+          <ReactPlayer url={videoUrl} width="100%" height="100%" />
+          <VideoTitle dark={isDarkTheme}>{title}</VideoTitle>
+          <VideoDetailsBox>
+            <TimeAndViewBox>
+              <Views>{viewCount} views</Views>
+              <Time>
+                {formatDistanceToNow(new Date(publishedAt), {addSuffix: false})
+                  .split(' ')
+                  .slice(1)
+                  .join(' ')}{' '}
+                ago
+              </Time>
+            </TimeAndViewBox>
+            <ButtonBox>
+              <VideoButton
+                dark={isDarkTheme}
+                type="button"
+                onClick={toggleLike}
+              >
+                {isVideoLiked ? (
+                  <BiSolidLike
+                    size={24}
+                    color="#2563eb" /* {isDarkTheme ? 'white' : 'rgba(0,0,0,.7)'} */
+                    className="video-icon"
+                  />
+                ) : (
+                  <BiLike size={24} color="#64748b" className="video-icon" />
+                )}
+                Like
+              </VideoButton>
+              <VideoButton
+                dark={isDarkTheme}
+                type="button"
+                onClick={toggleUnlike}
+              >
+                {isVideoUnliked ? (
+                  <BiSolidDislike
+                    size={24}
+                    className="video-icon"
+                    color="#2563eb"
+                  />
+                ) : (
+                  <BiDislike size={24} className="video-icon" color="#64748b" />
+                )}
+                Dislike
+              </VideoButton>
+              <VideoButton
+                dark={isDarkTheme}
+                type="button"
+                onClick={toggleSave}
+              >
+                {isVideoSaved ? (
+                  <MdPlaylistAddCheck
+                    size={34}
+                    className="video-icon"
+                    color="#2563eb"
+                  />
+                ) : (
+                  <MdPlaylistAdd
+                    size={34}
+                    className="video-icon"
+                    color="#64748b"
+                  />
+                )}
+                Save
+              </VideoButton>
+            </ButtonBox>
+          </VideoDetailsBox>
+          <hr />
+          <ChannelDetails>
+            <ProfileImage alt={channel.name} src={channel.profileImageUrl} />
+            <ChannelData>
+              <ChannelName dark={isDarkTheme}>{channel.name}</ChannelName>
+              <ChannelSubscribers dark={isDarkTheme}>
+                {channel.subscriberCount} subscribers
+              </ChannelSubscribers>
+              <VideoDescription dark={isDarkTheme}>
+                {description}
+              </VideoDescription>
+            </ChannelData>
+          </ChannelDetails>
+        </VideoContainer>
+      </VideoItemSection>
+    )
+  }
+
+  renderView = value => {
+    const {apiStatus} = this.state
+    switch (apiStatus) {
+      case apiStatusList.inprogress:
+        return <LoadingView />
+      case apiStatusList.failure:
+        return <FailureView retry={this.getVideoDetails} />
+      case apiStatusList.success:
+        return this.renderVideoAndOther(value)
+      default:
+        return null
+    }
+  }
+
   renderVideoRoute = () => (
     <Context.Consumer>
       {value => {
         const {isDarkTheme} = value
-        const {videoDetails} = this.state
-        const {
-          channel,
-          id,
-          description,
-          publishedAt,
-          thumbnailUrl,
-          videoUrl,
-          viewCount,
-          title,
-        } = videoDetails
+
+        /* const {name, profileImageUrl, subscriberCount} = channel */
+
         return (
-          <VideoRouteContainer dark={isDarkTheme}>
+          <VideoRouteContainer
+            dark={isDarkTheme}
+            data-testid="videoItemDetails"
+          >
             <Header />
             <RouteBody>
               <Sidebar />
-              <VideoItemSection>
-                <VideoContainer>
-                  <ReactPlayer url={videoUrl} width="100%" height="100%" />
-                  <VideoTitle dark={isDarkTheme}>{title}</VideoTitle>
-                  <VideoDetailsBox>
-                    <TimeAndViewBox>
-                      <Views>{viewCount} views</Views>
-                      <Time>{formatDistanceToNow(new Date(publishedAt))}</Time>
-                    </TimeAndViewBox>
-                    <ButtonBox>
-                      <VideoButton>
-                        <BiLike size={24} className="video-icon" />
-                        Like
-                      </VideoButton>
-                      <VideoButton>
-                        <BiDislike size={24} className="video-icon" />
-                        Dislike
-                      </VideoButton>
-                      <VideoButton>
-                        <MdPlaylistAdd size={24} className="video-icon" />
-                        Save
-                      </VideoButton>
-                    </ButtonBox>
-                  </VideoDetailsBox>
-                  <hr />
-                </VideoContainer>
-              </VideoItemSection>
+              {this.renderView(value)}
             </RouteBody>
           </VideoRouteContainer>
         )

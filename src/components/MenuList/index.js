@@ -29,7 +29,6 @@ const MenuList = props => (
       const linkClassName = isDarkTheme ? 'dark-sidebar-link' : 'sidebar-link'
       const {match} = props
       const {path} = match
-      console.log(path)
 
       return (
         <SidebarListContainer>
@@ -58,13 +57,13 @@ const MenuList = props => (
             </Link>
           </SidebarListItem>
           <SidebarListItem
-            isActive={path === '/savedvideos'}
+            isActive={path === '/saved-videos'}
             dark={isDarkTheme}
           >
-            <Link to="/savedvideos" className={linkClassName}>
+            <Link to="/saved-videos" className={linkClassName}>
               <MdPlaylistAdd
                 size={30}
-                color={path === '/savedvideos' ? 'red' : undefined}
+                color={path === '/saved-videos' ? 'red' : undefined}
               />
               <LinkParagraph>Saved videos</LinkParagraph>
             </Link>

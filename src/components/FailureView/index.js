@@ -17,7 +17,11 @@ const FailureView = props => {
     const {retry} = props
     return (
       <div className={failureViewClassName}>
-        <img className="failure-view-image" alt="" src={failureViewImage} />
+        <img
+          className="failure-view-image"
+          alt="failure view"
+          src={failureViewImage}
+        />
         <h1 className="failure-view-heading">Oops! Something Went Wrong</h1>
         <p>
           We are having some trouble to complete your request.

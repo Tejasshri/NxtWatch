@@ -6,7 +6,7 @@ import Context from '../../context/Context'
 
 import Header from '../Header'
 import Sidebar from '../Sidebar'
-import SavedVideoItem from '../SavedVideoItem'
+import SavedVideoItem from '../GamingVideoItem'
 
 import LoadingView from '../LoadingView'
 import FailureView from '../FailureView'
@@ -15,8 +15,8 @@ import './index.css'
 import {
   Frame,
   MainBody,
-  TrendingVideoBody,
-  TrendingVideoHeader,
+  GamingVideoBody,
+  GamingVideoHeader,
   LogoContainer,
   LogoHeading,
   VideoListContainer,
@@ -46,7 +46,7 @@ class Trending extends Component {
   getTrendingVideos = async () => {
     this.setState({apiStatus: apiStatusList.inprogress})
     const jwtToken = Cookies.get('jwt_token')
-    const apiUrl = 'https://apis.ccbp.in/videos/trending'
+    const apiUrl = 'https://apis.ccbp.in/videos/gaming'
     const option = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -57,16 +57,12 @@ class Trending extends Component {
     const response = await fetch(apiUrl, option)
     if (response.ok) {
       const data = await response.json()
+      console.log(data)
       const updatedData = data.videos.map(each => ({
-        channel: {
-          name: each.channel.name,
-          profileImageUrl: each.channel.profile_image_url,
-        },
         id: each.id,
         viewCount: each.view_count,
         title: each.title,
         thumbnailUrl: each.thumbnail_url,
-        publishedAt: each.published_at,
       }))
 
       this.setState({
@@ -85,12 +81,12 @@ class Trending extends Component {
 
     return (
       <>
-        <TrendingVideoHeader dark={isDarkTheme}>
+        <GamingVideoHeader dark={isDarkTheme}>
           <LogoContainer dark={isDarkTheme}>
             <BsFire size={30} color="red" />
           </LogoContainer>
-          <LogoHeading dark={isDarkTheme}>Trending</LogoHeading>
-        </TrendingVideoHeader>
+          <LogoHeading dark={isDarkTheme}>Gaming</LogoHeading>
+        </GamingVideoHeader>
         <VideoListContainer>
           {trendingVideosList.map(each => (
             <SavedVideoItem videoDetails={each} key={each.id} />
@@ -101,7 +97,6 @@ class Trending extends Component {
   }
 
   renderView = value => {
-    const {isDarkTheme} = value
     const {apiStatus} = this.state
     switch (apiStatus) {
       case apiStatusList.inprogress:
@@ -122,11 +117,11 @@ class Trending extends Component {
           const {isDarkTheme} = value
 
           return (
-            <Frame dark={isDarkTheme} data-testid="trending">
+            <Frame dark={isDarkTheme} data-testid="gaming">
               <Header />
               <MainBody>
                 <Sidebar />
-                <TrendingVideoBody>{this.renderView(value)}</TrendingVideoBody>
+                <GamingVideoBody>{this.renderView(value)}</GamingVideoBody>
               </MainBody>
             </Frame>
           )

@@ -1,0 +1,9 @@
+/* * {
+  border: 1px solid red;
+} */
+
+.gaming-video-link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}

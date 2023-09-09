@@ -15,13 +15,13 @@ export const MainBody = styled.div`
   flex-grow: 1;
 `
 
-export const SavedVideoBody = styled.div`
+export const GamingVideoBody = styled.div`
   flex-grow: 1;
   overflow-y: auto;
   height: 90vh;
 `
 
-export const SavedVideoHeader = styled.div`
+export const GamingVideoHeader = styled.div`
   width: 100%;
   background-color: ${props =>
     props.dark ? 'rgba(255,255,255,.05)' : '#d0d0d0'};
