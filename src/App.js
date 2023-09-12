@@ -116,7 +116,6 @@ class App extends Component {
           <ProtectedRoute exact path="/gaming" component={GamingRoute} />
           <Route exact path="/not-found" component={NotFound} />
           <Redirect to="/not-found" />
-          <NotFound />
         </Switch>
       </Context.Provider>
     )

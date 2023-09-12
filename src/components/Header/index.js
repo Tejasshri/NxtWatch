@@ -154,7 +154,7 @@ const Header = props => (
                           Cancel
                         </OutlineButton>
                         <Button type="button" onClick={onClickLogout}>
-                          Logout
+                          Confirm
                         </Button>
                       </PopupButtonBox>
                     </LogoutPopup>

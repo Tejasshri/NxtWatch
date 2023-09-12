@@ -1,5 +1,4 @@
 import {Link} from 'react-router-dom'
-import {formatDistanceToNow} from 'date-fns'
 
 import Context from '../../context/Context'
 
@@ -10,10 +9,8 @@ import {
   GamingVideoDetailsContainer,
   GamingVideoDetailsBox,
   GamingVideoTitle,
-  ChannelName,
   ViewAndTimeBox,
   Views,
-  Time,
 } from './styledComponent'
 
 const VideoItem = props => (
@@ -21,14 +18,7 @@ const VideoItem = props => (
     {value => {
       const {isDarkTheme} = value
       const {videoDetails} = props
-      const {
-        channel,
-        id,
-        viewCount,
-        title,
-        thumbnailUrl,
-        publishedAt,
-      } = videoDetails
+      const {id, viewCount, title, thumbnailUrl} = videoDetails
       return (
         <GamingVideoListItem>
           <Link to={`/videos/${id}`} className="gaming-video-link">

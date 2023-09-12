@@ -125,7 +125,7 @@ class Home extends Component {
     )
   }
 
-  renderView = isDarkTheme => {
+  renderView = () => {
     const {apiStatus} = this.state
     switch (apiStatus) {
       case apiStatusList.inprogress:
@@ -162,6 +162,7 @@ class Home extends Component {
           type="search"
           onChange={this.onChangeSearch}
           onKeyDown={this.onEnterSearch}
+          value={searchInput}
         />
         <SearchButton
           dark={isDarkTheme}
