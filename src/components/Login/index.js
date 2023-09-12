@@ -40,11 +40,14 @@ class Login extends Component {
           const {isDarkTheme} = value
           return (
             <InputContainer>
-              <Label dark={isDarkTheme}>USERNAME</Label>
+              <Label htmlFor="username" dark={isDarkTheme}>
+                USERNAME
+              </Label>
               <UserInput
                 type="text"
                 value={username}
                 onChange={this.onChangeUsername}
+                id="username"
               />
             </InputContainer>
           )
@@ -61,11 +64,14 @@ class Login extends Component {
           const {isDarkTheme} = value
           return (
             <InputContainer>
-              <Label dark={isDarkTheme}>PASSWORD</Label>
+              <Label dark={isDarkTheme} htmlFor="password">
+                PASSWORD
+              </Label>
               <UserInput
                 type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={this.onChangePassword}
+                id="password"
               />
             </InputContainer>
           )
