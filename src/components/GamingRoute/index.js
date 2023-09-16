@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import {BsFire} from 'react-icons/bs'
+import {AiFillFire} from 'react-icons/ai'
 
 import Context from '../../context/Context'
 
@@ -83,7 +83,7 @@ class Trending extends Component {
       <>
         <GamingVideoHeader dark={isDarkTheme}>
           <LogoContainer dark={isDarkTheme}>
-            <BsFire size={30} color="red" />
+            <AiFillFire size={30} color="red" />
           </LogoContainer>
           <LogoHeading dark={isDarkTheme}>Gaming</LogoHeading>
         </GamingVideoHeader>

@@ -1,7 +1,6 @@
 import {Link, withRouter} from 'react-router-dom'
 
-import {AiFillHome} from 'react-icons/ai'
-import {BsFire} from 'react-icons/bs'
+import {AiFillHome, AiFillFire} from 'react-icons/ai'
 import {SiYoutubegaming} from 'react-icons/si'
 import {MdPlaylistAdd} from 'react-icons/md'
 
@@ -40,7 +39,7 @@ const MenuList = props => (
           </SidebarListItem>
           <SidebarListItem isActive={path === '/trending'} dark={isDarkTheme}>
             <Link to="/trending" className={linkClassName}>
-              <BsFire
+              <AiFillFire
                 size={30}
                 color={path === '/trending' ? 'red' : undefined}
               />

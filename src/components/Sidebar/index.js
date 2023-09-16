@@ -34,7 +34,7 @@ const Sidebar = props => (
       return (
         <SidebarContainer dark={isDarkTheme}>
           <MenuList />
-          <ContactUsContainer dark={isDarkTheme} data-testid="banner">
+          <ContactUsContainer dark={isDarkTheme}>
             <ContactUsHeading>Contact us</ContactUsHeading>
             <CompanyImage
               alt="facebook logo"

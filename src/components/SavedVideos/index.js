@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {BsFire} from 'react-icons/bs'
+import {AiFillFire} from 'react-icons/ai'
 
 import Context from '../../context/Context'
 
@@ -48,7 +48,7 @@ class SavedVideo extends Component {
       <>
         <SavedVideoHeader dark={isDarkTheme}>
           <LogoContainer dark={isDarkTheme}>
-            <BsFire size={30} color="red" />
+            <AiFillFire size={30} color="red" />
           </LogoContainer>
           <LogoHeading dark={isDarkTheme}>Saved Videos</LogoHeading>
         </SavedVideoHeader>

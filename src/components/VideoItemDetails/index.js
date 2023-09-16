@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import ReactPlayer from 'react-player'
-import {BiSolidLike, BiLike, BiSolidDislike, BiDislike} from 'react-icons/bi'
+import {AiFillLike, AiFillDislike} from 'react-icons/ai'
 import {MdPlaylistAdd, MdPlaylistAddCheck} from 'react-icons/md'
 import {formatDistanceToNow} from 'date-fns'
 
@@ -144,13 +144,17 @@ class VideoItemDetails extends Component {
                 onClick={toggleLike}
               >
                 {isVideoLiked ? (
-                  <BiSolidLike
+                  <AiFillLike
                     size={24}
                     color="#2563eb" /* {isDarkTheme ? 'white' : 'rgba(0,0,0,.7)'} */
                     className="video-icon"
                   />
                 ) : (
-                  <BiLike size={24} color="#64748b" className="video-icon" />
+                  <AiFillLike
+                    size={24}
+                    color="#64748b"
+                    className="video-icon"
+                  />
                 )}
                 Like
               </VideoButton>
@@ -160,13 +164,17 @@ class VideoItemDetails extends Component {
                 onClick={toggleUnlike}
               >
                 {isVideoUnliked ? (
-                  <BiSolidDislike
+                  <AiFillDislike
                     size={24}
                     className="video-icon"
                     color="#2563eb"
                   />
                 ) : (
-                  <BiDislike size={24} className="video-icon" color="#64748b" />
+                  <AiFillDislike
+                    size={24}
+                    className="video-icon"
+                    color="#64748b"
+                  />
                 )}
                 Dislike
               </VideoButton>
@@ -188,7 +196,7 @@ class VideoItemDetails extends Component {
                     color="#64748b"
                   />
                 )}
-                Save
+                {isVideoSaved ? 'Saved' : 'Save'}
               </VideoButton>
             </ButtonBox>
           </VideoDetailsBox>

@@ -2,10 +2,9 @@ import {Link, withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Popup from 'reactjs-popup'
 
-import {FiSun, FiMoon} from 'react-icons/fi'
+import {FiSun, FiMoon, FiLogOut} from 'react-icons/fi'
 import {MdClose} from 'react-icons/md'
-import {RxHamburgerMenu} from 'react-icons/rx'
-import {LuLogOut} from 'react-icons/lu'
+import {AiOutlineMenu} from 'react-icons/ai'
 import Context from '../../context/Context'
 import MenuList from '../MenuList'
 
@@ -73,7 +72,7 @@ const Header = props => (
                   modal
                   trigger={
                     <NavThreeLineBtn>
-                      <RxHamburgerMenu
+                      <AiOutlineMenu
                         size={30}
                         color={isDarkTheme ? '#ffffff' : ''}
                       />
@@ -104,9 +103,6 @@ const Header = props => (
                       Logout
                     </OutlineButton>
                   }
-                  overlayStyle={{
-                    backgroundColor: '',
-                  }}
                 >
                   {close => (
                     <LogoutPopup dark={isDarkTheme}>
@@ -132,7 +128,7 @@ const Header = props => (
                   modal
                   trigger={
                     <NavLogoutButtonMobile type="button">
-                      <LuLogOut
+                      <FiLogOut
                         size={30}
                         color={isDarkTheme ? '#ffffff' : null}
                       />
