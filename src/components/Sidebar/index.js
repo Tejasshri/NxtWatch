@@ -1,10 +1,5 @@
 import {Link, withRouter} from 'react-router-dom'
 
-import {AiFillHome} from 'react-icons/ai'
-import {BsFire} from 'react-icons/bs'
-import {SiYoutubegaming} from 'react-icons/si'
-import {MdPlaylistAdd} from 'react-icons/md'
-
 import Context from '../../context/Context'
 import MenuList from '../MenuList'
 
@@ -35,7 +30,7 @@ const Sidebar = props => (
         <SidebarContainer dark={isDarkTheme}>
           <MenuList />
           <ContactUsContainer dark={isDarkTheme}>
-            <ContactUsHeading>Contact us</ContactUsHeading>
+            <ContactUsHeading as="p">Contact us</ContactUsHeading>
             <CompanyImage
               alt="facebook logo"
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
@@ -48,7 +43,7 @@ const Sidebar = props => (
               alt="linked in logo"
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
             />
-            <ContactsDescription>
+            <ContactsDescription as="p">
               Enjoy! Now to see your channels and recommendations!
             </ContactsDescription>
           </ContactUsContainer>

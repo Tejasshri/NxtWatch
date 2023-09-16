@@ -106,8 +106,8 @@ const Header = props => (
                 >
                   {close => (
                     <LogoutPopup dark={isDarkTheme}>
-                      <LogoutPopupHeading dark={isDarkTheme}>
-                        Are you sure you want to logout?
+                      <LogoutPopupHeading as="p" dark={isDarkTheme}>
+                        Are you sure, you want to logout?
                       </LogoutPopupHeading>
                       <PopupButtonBox>
                         <OutlineButton
@@ -137,8 +137,8 @@ const Header = props => (
                 >
                   {close => (
                     <LogoutPopup dark={isDarkTheme}>
-                      <LogoutPopupHeading dark={isDarkTheme}>
-                        Are you sure you want to logout?
+                      <LogoutPopupHeading as="p" dark={isDarkTheme}>
+                        Are you sure, you want to logout?
                       </LogoutPopupHeading>
                       <PopupButtonBox>
                         <OutlineButton

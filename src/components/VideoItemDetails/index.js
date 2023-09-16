@@ -121,6 +121,13 @@ class VideoItemDetails extends Component {
     const isVideoUnliked = unlikedVideoList.includes(id)
     const isVideoSaved = savedVideos.some(each => each.id === id)
 
+    const getColor = activity => {
+      if (activity === true) {
+        return '#2563eb'
+      }
+      return '#64748b'
+    }
+
     return (
       <VideoItemSection>
         <VideoContainer>
@@ -139,47 +146,31 @@ class VideoItemDetails extends Component {
             </TimeAndViewBox>
             <ButtonBox>
               <VideoButton
-                dark={isDarkTheme}
+                isActive={isVideoLiked}
                 type="button"
                 onClick={toggleLike}
               >
-                {isVideoLiked ? (
-                  <AiFillLike
-                    size={24}
-                    color="#2563eb" /* {isDarkTheme ? 'white' : 'rgba(0,0,0,.7)'} */
-                    className="video-icon"
-                  />
-                ) : (
-                  <AiFillLike
-                    size={24}
-                    color="#64748b"
-                    className="video-icon"
-                  />
-                )}
+                <AiFillLike
+                  size={24}
+                  color={isVideoLiked ? '#2563eb' : '#64748b'}
+                  className="video-icon"
+                />
                 Like
               </VideoButton>
               <VideoButton
-                dark={isDarkTheme}
+                isActive={isVideoUnliked}
                 type="button"
                 onClick={toggleUnlike}
               >
-                {isVideoUnliked ? (
-                  <AiFillDislike
-                    size={24}
-                    className="video-icon"
-                    color="#2563eb"
-                  />
-                ) : (
-                  <AiFillDislike
-                    size={24}
-                    className="video-icon"
-                    color="#64748b"
-                  />
-                )}
+                <AiFillDislike
+                  size={24}
+                  className="video-icon"
+                  color={isVideoUnliked ? '#2563eb' : '#64748b'}
+                />
                 Dislike
               </VideoButton>
               <VideoButton
-                dark={isDarkTheme}
+                isActive={isVideoSaved}
                 type="button"
                 onClick={toggleSave}
               >
@@ -187,13 +178,13 @@ class VideoItemDetails extends Component {
                   <MdPlaylistAddCheck
                     size={34}
                     className="video-icon"
-                    color="#2563eb"
+                    color={isVideoSaved ? '#2563eb' : '#64748b'}
                   />
                 ) : (
                   <MdPlaylistAdd
                     size={34}
                     className="video-icon"
-                    color="#64748b"
+                    color={isVideoSaved ? '#2563eb' : '#64748b'}
                   />
                 )}
                 {isVideoSaved ? 'Saved' : 'Save'}
@@ -202,7 +193,7 @@ class VideoItemDetails extends Component {
           </VideoDetailsBox>
           <hr />
           <ChannelDetails>
-            <ProfileImage alt={channel.name} src={channel.profileImageUrl} />
+            <ProfileImage alt="channel logo" src={channel.profileImageUrl} />
             <ChannelData>
               <ChannelName dark={isDarkTheme}>{channel.name}</ChannelName>
               <ChannelSubscribers dark={isDarkTheme}>

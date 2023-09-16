@@ -22,7 +22,7 @@ const VideoItem = props => (
       return (
         <GamingVideoListItem>
           <Link to={`/videos/${id}`} className="gaming-video-link">
-            <ThumbImage src={thumbnailUrl} />
+            <ThumbImage alt="video thumbnail" src={thumbnailUrl} />
             <GamingVideoDetailsContainer>
               <GamingVideoDetailsBox>
                 <GamingVideoTitle dark={isDarkTheme}>{title}</GamingVideoTitle>

@@ -33,7 +33,7 @@ class SavedVideo extends Component {
     return (
       <NotFoundSection dark={isDarkTheme}>
         <NotFoundImage alt="no saved videos" src={noVideoImageUrl} />
-        <NotFoundHeading>No saved video found</NotFoundHeading>
+        <NotFoundHeading>No saved videos found</NotFoundHeading>
         <NotFoundDescription>
           You can save your videos while watching them
         </NotFoundDescription>

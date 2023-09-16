@@ -38,7 +38,7 @@ const VideoItem = props => (
       return (
         <SavedVideoListItem>
           <Link to={`/videos/${id}`} className="saved-video-link">
-            <ThumbImage src={thumbnailUrl} />
+            <ThumbImage alt="video thumbnail" src={thumbnailUrl} />
             <VideoDetailsContainer>
               <VideoDetailsBox>
                 <VideoTitle dark={isDarkTheme}>{title}</VideoTitle>

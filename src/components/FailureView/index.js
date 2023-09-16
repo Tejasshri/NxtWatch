@@ -24,9 +24,7 @@ const FailureView = props => {
         />
         <h1 className="failure-view-heading">Oops! Something Went Wrong</h1>
         <p>
-          We are having some trouble to complete your request.
-          <br />
-          Please try again.
+          We are having some trouble to complete your request. Please try again.
         </p>
         <Button type="button" onClick={() => retry()}>
           Retry

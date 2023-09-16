@@ -89,9 +89,11 @@ class Login extends Component {
             <UserInput
               onClick={this.onChangeShowPassword}
               type="checkbox"
-              checkbox
+              id="checkbox"
             />
-            <Label dark={isDarkTheme}>Show Password</Label>
+            <Label htmlFor="checkbox" dark={isDarkTheme}>
+              Show Password
+            </Label>
           </InputCheckboxContainer>
         )
       }}
@@ -140,7 +142,7 @@ class Login extends Component {
           return (
             <LoginContainer dark={isDarkTheme}>
               <LoginForm dark={isDarkTheme} onSubmit={this.onClickSubmit}>
-                <LogoImage src={logoUrl} />
+                <LogoImage alt="website logo" src={logoUrl} />
                 {this.renderUsernameInputBox()}
                 {this.renderPasswordInputBox()}
                 {this.renderCheckBoxContainer()}

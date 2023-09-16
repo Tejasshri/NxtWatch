@@ -65,7 +65,7 @@ export const CustomBtn = styled.button`
   border: 0;
   border-radius: 4px;
   font-weight: bold;
-  color: white;
+  color: #ffffff;
   background-color: #3b82f6;
 `
 

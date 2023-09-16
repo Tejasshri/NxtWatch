@@ -69,7 +69,7 @@ export const VideoButton = styled.button`
   background-color: transparent;
   border: 0;
   font-size: 18px;
-  color: ${props => (props.dark ? 'white' : 'rgba(0,0,0,.7)')};
+  color: ${props => (props.isActive ? '#2563eb' : '#64748b')};
 `
 
 export const ChannelDetails = styled.div`

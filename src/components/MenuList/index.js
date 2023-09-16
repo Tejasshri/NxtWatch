@@ -13,14 +13,6 @@ import {
 } from './styledComponent'
 import './index.css'
 
-const routeList = {
-  initial: 'INITIAL',
-  home: 'HOME',
-  trending: 'TRENDING',
-  gaming: 'GAMING',
-  savedvideos: 'SAVED_VIDEOS',
-}
-
 const MenuList = props => (
   <Context.Consumer>
     {value => {

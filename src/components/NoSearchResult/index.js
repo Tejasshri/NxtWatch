@@ -15,7 +15,7 @@ const NoSearchResult = props => {
     return (
       <div className={emptyViewClassName}>
         <img alt="no videos" src={emptyViewImage} />
-        <h1>No Search result found</h1>
+        <h1>No Search results found</h1>
         <p>Try different key words or remove search filter.</p>
         <Button type="button" onClick={() => retry()}>
           Retry
