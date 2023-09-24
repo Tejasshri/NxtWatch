@@ -11,6 +11,7 @@ import LoadingView from '../LoadingView'
 import VideoItem from '../VideoItem'
 import FailureView from '../FailureView'
 import NoSearchResult from '../NoSearchResult'
+import LoadingPlaceHolder from '../LoadingPlaceHolder'
 
 import './index.css'
 import {
@@ -110,6 +111,17 @@ class Home extends Component {
     </AdsContainer>
   )
 
+  renderLoadingPlaceholder = () => {
+    const sampleList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    return (
+      <VideoListContainer>
+        {sampleList.map(each => (
+          <LoadingPlaceHolder key={each} />
+        ))}
+      </VideoListContainer>
+    )
+  }
+
   renderVideoSection = () => {
     const {videosList} = this.state
     return (
@@ -129,7 +141,7 @@ class Home extends Component {
     const {apiStatus} = this.state
     switch (apiStatus) {
       case apiStatusList.inprogress:
-        return <LoadingView />
+        return this.renderLoadingPlaceholder()
       case apiStatusList.success:
         return this.renderVideoSection()
       case apiStatusList.failure:
