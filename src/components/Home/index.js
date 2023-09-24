@@ -60,7 +60,14 @@ class Home extends Component {
         Authorization: `Bearer ${jwtToken}`,
       },
     }
-    const response = await fetch(apiUrl, option)
+    let response = {}
+    try {
+      response = await fetch(apiUrl, option)
+    } catch (error) {
+      console.log('Error')
+      setTimeout(this.getVideosList, 10000)
+      return
+    }
 
     if (response.ok) {
       const data = await response.json()
@@ -112,13 +119,16 @@ class Home extends Component {
   )
 
   renderLoadingPlaceholder = () => {
-    const sampleList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    const sampleList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     return (
-      <VideoListContainer>
-        {sampleList.map(each => (
-          <LoadingPlaceHolder key={each} />
-        ))}
-      </VideoListContainer>
+      <>
+        <VideoListContainer>
+          {sampleList.map(each => (
+            <LoadingPlaceHolder key={each} />
+          ))}
+        </VideoListContainer>
+        <LoadingView />
+      </>
     )
   }
 
